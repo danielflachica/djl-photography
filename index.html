@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <!-- Material Icons CSS -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!-- Grid Gallery CSS -->
+        <link rel="stylesheet" type="text/css" href="assets/css/grid-gallery.min.css"/>
+        <!-- Custom CSS -->
+        <link rel="stylesheet" type="text/css" href="assets/css/custom.css" />
+
+        <title>Darren</title>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Darren</h1>
+
+            <!-- Grid Gallery -->
+            <div class="gg-container">
+                <div class="gg-box">
+                </div>
+            </div>
+
+            <!-- Hidden Gallery List DP -->
+            <div class="d-none">
+                <script type="text/javascript" src="https://c2acw858.caspio.com/dp/51a4b0004e6e1b68f11f470e9706/emb"></script>
+            </div>
+        </div>
+
+        <!-- jQuery -->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <!-- Bootstrap Bundle with Popper -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+        <script type="text/javascript">
+            const APP_KEY = '51a4b0004e6e1b68f11f470e9706';
+
+            document.addEventListener('DataPageReady', function (event) {
+                if (event.detail.appKey == APP_KEY) {
+                    let cbForm = $('form[action*="'+APP_KEY+'"]');
+                    let cbListItems = cbForm.find('div[data-cb-name="data-row"]');
+                    let ggBox = $('.gg-box');
+
+                    var galleries = [];
+
+                    cbListItems.each(function () {
+                        var cbData = $(this).find('dd');
+                        var gallery = {
+                            GUID: cbData.eq(0).text(),
+                            name: cbData.eq(1).text(),
+                            description: cbData.eq(2).html(),
+                            imageSrc: cbData.eq(3).find('img').attr('src'),
+                        };
+                        galleries.push(gallery);
+                    });
+
+                    $.each(galleries, function (index) {
+                        var gallery = galleries[index];
+                        var img = $('<img>', {
+                            'src': gallery.imageSrc,
+                            'title': gallery.name,
+                            'alt': gallery.name,
+                            // 'onclick': detailsPage(gallery.GUID),
+                        });
+                        var detailsLink = $('<a>', {
+                            'href': 'gallery.html?GUID='+gallery.GUID,
+                        });
+                        detailsLink.append(img);
+                        ggBox.append(detailsLink);
+                    });
+
+                    function detailsPage(GUID) {
+                        // window.location.href = 'gallery.html?GUID=' + GUID;
+                    }
+
+                    /** Grid Gallery JS */
+                    // const root = document.querySelector("body, html");
+                    // const container = document.querySelector('.gg-container');
+                    // const images = document.querySelectorAll(".gg-box > img");
+                    // const l = images.length;
+
+                    // for(var i = 0; i < l; i++) {
+                    //     images[i].addEventListener("click", function(i) {
+                    //         var currentImg = this;
+                    //         const parentItem = currentImg.parentElement, screenItem = document.createElement('div');
+                    //         screenItem.id = "gg-screen";
+                    //         container.prepend(screenItem);
+                    //         if (parentItem.hasAttribute('data-theme')) screenItem.setAttribute("data-theme", "dark");
+                    //         var route = currentImg.src;
+                    //         root.style.overflow = 'hidden';
+                    //         screenItem.innerHTML = '<div class="gg-image"></div><div class="gg-close gg-btn">&times</div><div class="gg-next gg-btn">&rarr;</div><div class="gg-prev gg-btn">&larr;</div>';
+                    //         const first = images[0].src, last = images[l-1].src;
+                    //         const imgItem = document.querySelector(".gg-image"), prevBtn = document.querySelector(".gg-prev"), nextBtn = document.querySelector(".gg-next"), close = document.querySelector(".gg-close");
+                    //         imgItem.innerHTML = '<img src="' + route + '">';
+
+                    //         if (l > 1) {
+                    //         if (route == first) {
+                    //             prevBtn.hidden = true;
+                    //             var prevImg = false;
+                    //             var nextImg = currentImg.nextElementSibling;
+                    //         }
+                    //         else if (route == last) {
+                    //             nextBtn.hidden = true;
+                    //             var nextImg = false;
+                    //             var prevImg = currentImg.previousElementSibling;
+                    //         }
+                    //         else {
+                    //             var prevImg = currentImg.previousElementSibling;
+                    //             var nextImg = currentImg.nextElementSibling;
+                    //         }
+                    //         }
+                    //         else {
+                    //         prevBtn.hidden = true;
+                    //         nextBtn.hidden = true;
+                    //         }
+
+                    //         screenItem.addEventListener("click", function(e) {
+                    //         if (e.target == this || e.target == close) hide();
+                    //         });
+
+                    //         root.addEventListener("keydown", function(e) {
+                    //         if (e.keyCode == 37 || e.keyCode == 38) prev();
+                    //         if (e.keyCode == 39 || e.keyCode == 40) next();
+                    //         if (e.keyCode == 27 ) hide();
+                    //         });
+
+                    //         prevBtn.addEventListener("click", prev);
+                    //         nextBtn.addEventListener("click", next);
+
+                    //         function prev() {
+                    //         prevImg = currentImg.previousElementSibling;
+                    //         imgItem.innerHTML = '<img src="' + prevImg.src + '">';
+                    //         currentImg = currentImg.previousElementSibling;
+                    //         var mainImg = document.querySelector(".gg-image > img").src;
+                    //         nextBtn.hidden = false;
+                    //         prevBtn.hidden = mainImg === first;
+                    //         };
+
+                    //         function next() {
+                    //         nextImg = currentImg.nextElementSibling;
+                    //         imgItem.innerHTML = '<img src="' + nextImg.src + '">';
+                    //         currentImg = currentImg.nextElementSibling;
+                    //         var mainImg = document.querySelector(".gg-image > img").src;
+                    //         prevBtn.hidden = false;
+                    //         nextBtn.hidden = mainImg === last;
+                    //         };
+
+                    //         function hide() {
+                    //         root.style.overflow = 'auto';
+                    //         screenItem.remove();
+                    //         };
+                    //     });
+                    // }
+
+                    // function gridGallery (options) {
+                    //     if (options.selector) selector = document.querySelector(options.selector);
+                    //     if (options.darkMode) selector.setAttribute("data-theme", "dark");
+                    //     if (options.layout == "horizontal" || options.layout == "square") selector.setAttribute("data-layout", options.layout);
+                    //     if (options.gaplength) selector.style.setProperty('--gap-length', options.gaplength + 'px');
+                    //     if (options.rowHeight) selector.style.setProperty('--row-height', options.rowHeight + 'px');
+                    //     if (options.columnWidth) selector.style.setProperty('--column-width', options.columnWidth + 'px');
+                    // }
+                }
+            });
+        </script>
+    </body>
+</html>

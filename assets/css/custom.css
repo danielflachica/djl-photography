@@ -1,0 +1,24 @@
+.login-container {
+    height: 75vh;
+}
+
+/* Material Icons sizing*/
+.material-icons.md-18 { font-size: 18px !important; }
+.material-icons.md-24 { font-size: 24px !important; }
+.material-icons.md-36 { font-size: 36px !important; }
+.material-icons.md-48 { font-size: 48px !important; }
+
+/* modal close btn */
+.close {
+    border: none;
+    background-color: transparent;
+    font-size: 24px;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.text-inactive {
+    color: #bbb;
+}
